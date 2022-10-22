@@ -3,16 +3,26 @@ let closeModalButton = document.getElementById("closeModalButton");
 let modal = document.getElementById("modal");
 let overlay = document.getElementById('overlay');
 
-modalButton.onclick = function () {
+function closeModal() {
+    modal.setAttribute("class", "modal_hidden");
+    overlay.setAttribute("class", "overlay_hidden");
+}
+
+function openModal() {
     modal.setAttribute("class", "modal_active");
     overlay.setAttribute("class", "overlay_active");
+}
+
+modalButton.onclick = function () {
+    openModal();
 };
 
 closeModalButton.onclick = function () {
-    modal.removeAttribute("modal_active");
-    overlay.removeAttribute("overlay_active");
-    modal.setAttribute("class", "modal_hidden");
-    overlay.setAttribute("class", "overlay_hidden");
+    closeModal();
+}
+
+overlay.onclick = function () {
+    closeModal();
 }
 
 window.onload = function () {
@@ -22,5 +32,3 @@ window.onload = function () {
         clock.innerHTML = now.toLocaleTimeString();
     }, 1000);
 };
-
-//123
